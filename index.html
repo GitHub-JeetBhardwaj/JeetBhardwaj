@@ -23,7 +23,6 @@
     <meta name="twitter:site" content="@thejeetbhardwaj">
     <meta name="twitter:creator" content="@thejeetbhardwaj">
 
-    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context":"https://schema.org",
@@ -63,15 +62,9 @@
     </script>
     <meta name="twitter:card" content="summary_large_image">
 
-    <meta name="twitter:title"
-          content="Jeet Bhardwaj | AI & Data Science Engineer">
-    
-    <meta name="twitter:description"
-          content="AI Engineer specializing in Deep Learning, Computer Vision, NLP and Generative AI.">
-    
-    <meta name="twitter:image"
-          content="https://jeet-bhardwaj.vercel.app/preview.png">
-
+    <meta name="twitter:title" content="Jeet Bhardwaj | AI & Data Science Engineer">
+    <meta name="twitter:description" content="AI Engineer specializing in Deep Learning, Computer Vision, NLP and Generative AI.">
+    <meta name="twitter:image" content="https://jeet-bhardwaj.vercel.app/preview.png">
     <link rel="icon" type="image/x-icon" href="https://jeet-bhardwaj.vercel.app/logo.png">
 
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -91,6 +84,7 @@
             --text-inverse: #000000;
             
             --accent: #ffffff;
+            --accent-red: #dc2626;
             --accent-dim: #cccccc;
             
             --gradient-overlay: linear-gradient(135deg, rgba(5,5,5,0.7) 0%, rgba(21,21,21,0.9) 100%);
@@ -109,6 +103,7 @@
             --text-inverse: #ffffff;
             
             --accent: #000000;
+            --accent-red: #b91c1c;
             --accent-dim: #333333;
             
             --gradient-overlay: linear-gradient(135deg, rgba(248,249,250,0.7) 0%, rgba(233,236,239,0.9) 100%);
@@ -404,7 +399,6 @@
             padding: 1.8rem;
             position: relative; 
             border-radius: 4px;
-            
             transform-style: preserve-3d;
             transform: perspective(1000px);
             will-change: transform;
@@ -415,6 +409,10 @@
 
         .project-card > * { transform: translateZ(25px); transition: transform 0.3s ease; }
         .project-card:hover > * { transform: translateZ(45px); }
+
+        .project-img {
+            width: 100%; height: 180px; object-fit: cover; border-radius: 4px; margin-bottom: 1.2rem; display: block; border: 1px solid var(--border);
+        }
 
         .project-card h3 { color: var(--text-main); font-size: 1.25rem; margin-bottom: 10px; }
         .project-card p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.5; }
@@ -464,69 +462,107 @@
         }
 
         /* Certifications */
-        .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+        .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
         .cert-card {
             background: var(--surface); backdrop-filter: blur(10px);
-            border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.2rem;
-            display: flex; align-items: center; gap: 1rem; transition: all 0.3s ease;
+            border: 1px solid var(--border); border-radius: 4px; 
+            display: flex; flex-direction: column; align-items: flex-start;
+            transition: all 0.3s ease; overflow: hidden;
         }
         .cert-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-        .cert-icon {
-            font-size: 1.2rem; color: var(--text-main); background: var(--bg);
-            width: 40px; height: 40px; min-width: 40px; display: flex; align-items: center; justify-content: center;
-            border-radius: 4px; border: 1px solid var(--border);
+        .cert-img {
+            width: 100%; height: 200px; object-fit: cover; object-position: top;
+            border-bottom: 1px solid var(--border);
         }
-        .cert-info h4 { font-size: 0.95rem; color: var(--text-main); margin-bottom: 0.1rem; }
-        .cert-info a { font-size: 0.75rem; color: var(--text-dim); }
+        .cert-info { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; width: 100%; }
+        .cert-info h4 { font-size: 1rem; color: var(--text-main); margin-bottom: 0.2rem; }
+        .cert-info p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.5; margin-bottom: 0.5rem; }
+        .cert-info a { font-size: 0.8rem; color: var(--accent); display: inline-flex; align-items: center; gap: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* --- FOOTER --- */
-        .footer-separator-container {
-            position: relative; height: 80px; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; margin-top: 30px;
+        /* =========================================
+           6. STANDARD PREMIUM FOOTER
+           ========================================= */
+        .premium-footer { 
+            position: relative; width: 100%; padding: 8vw 6vw 3vw; 
+            background: rgba(40, 40, 40, 0.8); /* Dark gray transparent for dark mode */
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); 
+            border-top: 1px solid var(--border); 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 20;
+            overflow: hidden;
         }
-        .footer-line { width: 100%; height: 1px; background: var(--border); position: relative; }
-        .footer-scanner {
-            position: absolute; top: 50%; left: 0; width: 100px; height: 2px;
-            background: var(--accent); box-shadow: 0 0 10px var(--accent);
-            transform: translateY(-50%); animation: scanLine 4s ease-in-out infinite alternate;
-        }
-        .footer-center-node {
-            position: absolute; width: 16px; height: 16px; border: 1px solid var(--accent);
-            transform: rotate(45deg); background: var(--bg); z-index: 5;
-        }
-        @keyframes scanLine { 0% { left: 10%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 90%; opacity: 0; } }
 
-        footer { background: var(--surface); padding: 3rem 10% 1.5rem; position: relative; border-top: 1px solid var(--border); }
-        #footer-rain { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.05; pointer-events: none; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 2rem; position: relative; z-index: 2; }
-        .footer-heading { font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 1px; }
-        .footer-links { list-style: none; }
-        .footer-links li { margin-bottom: 0.6rem; }
-        .footer-links a { color: var(--text-dim); font-size: 0.85rem; }
-        
-        .footer-social { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
-        .social-icon {
-            width: 35px; height: 35px; background: var(--bg); border: 1px solid var(--border);
-            display: flex; align-items: center; justify-content: center; color: var(--text-dim); transition: 0.3s; font-size: 0.9rem;
+        [data-theme="light"] .premium-footer {
+            background: rgba(220, 220, 220, 0.8); /* Light gray transparent for light mode */
         }
-        .social-icon:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
         
-        .footer-bottom {
-            padding-top: 1.5rem; border-top: 1px solid var(--border);
-            text-align: center; color: var(--text-dim); font-size: 0.7rem;
-            display: flex; justify-content: space-between; text-transform: uppercase; letter-spacing: 1.5px;
-            position: relative; z-index: 2;
+        .footer-gradient-bar {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, #888888 0%, transparent 100%);
+            z-index: 21;
         }
+
+        .footer-massive-text { 
+            font-family: 'Sora', sans-serif; 
+            font-size: clamp(2rem, 8vw, 8rem); 
+            font-weight: 800; 
+            line-height: 0.9; 
+            letter-spacing: -0.04em; 
+            color: transparent; 
+            -webkit-text-stroke: 1px var(--border); 
+            margin-bottom: 4vw; 
+            background: linear-gradient(to bottom, var(--text-main) 0%, transparent 100%); 
+            -webkit-background-clip: text; 
+            text-align: center; 
+            transition: all 0.5s ease;
+            z-index: 2; 
+        }
+        .premium-footer:hover .footer-massive-text { 
+            -webkit-text-stroke: 1px var(--accent); 
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1); 
+        }
+        
+        .footer-content { display: flex; flex-direction: column; align-items: center; gap: 2.5rem; width: 100%; z-index: 2; }
+        .footer-links { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+        .footer-links a { 
+            display: flex; align-items: center; justify-content: center; 
+            width: 45px; height: 45px; border-radius: 50%; 
+            border: 1px solid var(--border); color: var(--text-main); 
+            font-size: 1rem; background: var(--surface); transition: all 0.3s ease; 
+        }
+        .footer-links a:hover { 
+            background: var(--text-main); color: var(--bg); 
+            border-color: var(--text-main); transform: translateY(-3px); 
+        }
+        .footer-bottom { 
+            display: flex; justify-content: space-between; align-items: center; 
+            width: 100%; padding-top: 2rem; border-top: 1px solid var(--border); margin-top: 1.5rem; 
+        }
+        .footer-status { 
+            display: flex; align-items: center; gap: 8px; font-family: monospace; 
+            font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;
+        }
+        .status-dot { 
+            width: 6px; height: 6px; background: #888888; border-radius: 50%; 
+        }
+        .copyright { font-family: monospace; color: var(--text-dim); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
 
         /* --- RESPONSIVE MEDIA QUERIES --- */
         @media (max-width: 900px) {
             .hero { flex-direction: column; text-align: center; padding-top: 110px; padding-bottom: 40px; }
-            .profile-image-container { width: 100%; order: 1; margin-bottom: 2rem; }
+            .profile-image-container { 
+                width: 100%; order: 1; margin-bottom: 2rem; 
+                display: flex; justify-content: flex-end; align-items: center; overflow: hidden; 
+            }
+            #profile-scene { 
+                margin: 0; margin-left: auto; width: 100%; max-width: 380px; height: 450px; 
+                transform-origin: right center; 
+            }
             .hero-content { width: 100%; margin-bottom: 20px; order: 2; }
             .hero-badge { display: none; }
-            .mobile-badge { display: block; } 
+            .mobile-badge { display: block; margin: 0 auto 1.5rem auto; } 
             .hero-content p { margin: 0 auto 2.5rem; border-left: none; padding-left: 0; }
             .hero-stats { justify-content: center; }
-            #profile-scene { margin: 0 auto; width: 350px; height: 450px; }
             .nav-center { display: none; }
             .mobile-menu-btn { display: block; }
         }
@@ -535,7 +571,6 @@
             .section { padding: 50px 5%; }
             .section-title { font-size: 1.5rem; text-align: center; display: block; margin-bottom: 30px; }
             .section-separator { margin: 0 0 30px; }
-            #profile-scene { width: 90%; height: 400px; max-width: 320px; }
             .projects-grid, .cert-grid, .skills-container { grid-template-columns: 1fr; }
             .skills-container { gap: 2rem; }
             .skill-list { justify-content: center; } 
@@ -584,7 +619,7 @@
     </div>
 
     <nav>
-        <div class="nav-logo">JEET BHARDWAJ<span></span></div>
+        <div class="nav-logo">JB<span></span></div>
         <div class="nav-center">
             <a href="#education">Education</a>
             <a href="#experience">Experience</a>
@@ -605,10 +640,14 @@
     </nav>
 
     <section class="hero">
+
+
+        
         <div class="hero-content reveal">
             <div class="hero-badge">AI & Data Science Engineer</div>
-            <h1>Training machines to think, while learning how to rethink.<span class="typewriter-cursor"></span></h1>
-            <p>Hi, I'm Jeet Bhardwaj, specializing in AI, Data Science, Computer Vision, and Deep Learning. Building intelligent systems and autonomous applications with precision.</p>
+            <h1>Jeet Bhardwaj</h1>
+            <h2 style="font-size: 1.5rem; font-weight: 500; color: var(--text-dim); margin-bottom: 20px;">Training machines to think, while learning how to rethink.<span class="typewriter-cursor"></span></h2>
+            <p>Specializing in AI, Data Science, Computer Vision, and Deep Learning. Building intelligent systems and autonomous applications with precision.</p>
             <div class="hero-stats">
                 <div class="stat-item">
                     <h3>3+</h3>
@@ -643,9 +682,6 @@
                                     <span style="color: var(--text-main);"><i class="fas fa-envelope"></i> EMAIL:</span><br>
                                     thejeetbhardwaj@gmail.com
                                 </p>
-                                <!-- <p style="color: var(--text-dim); font-size: 0.8rem; font-family: monospace; margin-bottom: 5px;">
-                                    <span style="color: var(--text-main);">SYS_ID:</span> 0901AD231032
-                                </p> -->
                                 <p style="color: var(--text-dim); font-size: 0.8rem; font-family: monospace;">
                                     <span style="color: #10b981;">ACCESS:</span> GRANTED
                                 </p>
@@ -737,6 +773,7 @@
         <h2 class="section-title">Projects</h2>
         <div class="projects-grid">
             <div class="project-card">
+                <img src="vector_embedding_explorer.png" alt="Vector Embedding Explorer" class="project-img">
                 <h3>Vector Embedding Explorer</h3>
                 <p>Interactive tool to explore word embeddings from PDF documents using Word2Vec and PCA visualization.</p>
                 <div class="project-tags">
@@ -748,7 +785,9 @@
                     View on Hugging Face <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
+            
             <div class="project-card">
+                <img src="ai_bot_for_automated_gameplay.png" alt="AI Bot for Automated-Gameplay" class="project-img">
                 <h3>AI Bot for Automated-Gameplay</h3>
                 <p>Built an autonomous AI bot to master Fruit Ninja Game using Python, YOLOv8, and OpenCV with GPU acceleration.</p>
                 <div class="project-tags">
@@ -760,7 +799,9 @@
                     View on GitHub <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
+            
             <div class="project-card">
+                <img src="age_and_gender_recognition_system.png" alt="Age & Gender Recognition System" class="project-img">
                 <h3>Age & Gender Recognition System</h3>
                 <p>Developed an end-to-end Deep Learning application using CNNs to predict age and gender from images.</p>
                 <div class="project-tags">
@@ -771,7 +812,9 @@
                     Live Project <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
+            
             <div class="project-card">
+                <img src="real_time_pose_estimator.png" alt="Real Time Pose Estimator" class="project-img">
                 <h3>Real Time Pose Estimator</h3>
                 <p>Created a web-based human pose estimation tool using Mediapipe and OpenCV. Accurately detects body landmarks.</p>
                 <div class="project-tags">
@@ -784,6 +827,7 @@
             </div>
 
             <div class="project-card">
+                <img src="image_to_anime_translation_system.png" alt="Image-to-Anime Translation System" class="project-img">
                 <h3>Image-to-Anime Translation System</h3>
                 <p>Developed a AI anime generation system to transform real-world images into anime-style visuals by training a deep learning model.</p>
                 <div class="project-tags">
@@ -796,6 +840,7 @@
             </div>
 
             <div class="project-card">
+                <img src="low_light_image_enhancer.png" alt="Low-Light Image Enhancer" class="project-img">
                 <h3>Low-Light Image Enhancer</h3>
                 <p>Developed a GAN-based low-light image enhancement system with histogram equalization to improve image visibility and contrast.</p>
                 <div class="project-tags">
@@ -806,7 +851,6 @@
                     Live Project <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
-
 
         </div>
     </section>
@@ -919,80 +963,81 @@
         
         <div class="cert-grid">
             <div class="cert-card">
-                <div class="cert-icon"><i class="fas fa-robot"></i></div>
+                <img src="research_paper_award_certificate.png" alt="Best Research Paper Award" class="cert-img">
+                <div class="cert-info">
+                    <h4>Best Research Paper Award</h4>
+                    <p>Anurag University | International Conference 2026</p>
+                </div>
+            </div>
+            
+            <div class="cert-card">
+                <img src="departmental_placement_cell_certificate.jpg" alt="Departmental Placement Cell" class="cert-img">
+                <div class="cert-info">
+                    <h4>Certificate of Appreciation – Placement Cell</h4>
+                    <p>Served as a Student Member of the Departmental Placement Cell at the Centre for Artificial Intelligence, contributing to placement-related activities and student engagement initiatives during the 2024–25 academic session.</p>
+                </div>
+            </div>
+            
+            <div class="cert-card">
+                <img src="mits_codeverse_certificate.jpg" alt="MITS CodeVerse Contest" class="cert-img">
+                <div class="cert-info">
+                    <h4>Certificate of Appreciation – MITS CodeVerse</h4>
+                    <p>Recognized for organizing and coordinating the offline round of the MITS CodeVerse Competitive Programming Contest, demonstrating event management, teamwork, and leadership skills.</p>
+                </div>
+            </div>
+            
+            <div class="cert-card">
+                <img src="foundation_of_cognitive_robotics.jpg" alt="Foundation of Cognitive Robotics" class="cert-img">
                 <div class="cert-info">
                     <h4>Foundation of Cognitive Robotics</h4>
-                    <a href="https://archive.nptel.ac.in/content/noc/NOC24/SEM2/Ecertificates/112/noc24-me82/Course/NPTEL24ME82S43620029202618070.pdf" target="_blank">NPTEL Swayam (IIT Madras)</a>
+                    <a href="https://archive.nptel.ac.in/content/noc/NOC24/SEM2/Ecertificates/112/noc24-me82/Course/NPTEL24ME82S43620029202618070.pdf" target="_blank">NPTEL Swayam (IIT Madras) <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
+            
             <div class="cert-card">
-                <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
+                <img src="cyber_security_and_privacy.jpg" alt="Cyber Security & Privacy" class="cert-img">
                 <div class="cert-info">
                     <h4>Cyber Security & Privacy</h4>
-                    <a href="https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL25CS116S65760059110548024" target="_blank">NPTEL Swayam (IIT Madras)</a>
+                    <a href="https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL25CS116S65760059110548024" target="_blank">NPTEL Swayam (IIT Madras) <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
+            
             <div class="cert-card">
-                <div class="cert-icon"><i class="fas fa-user-secret"></i></div>
+                <img src="ethical_hacking.jpg" alt="Ethical Hacking" class="cert-img">
                 <div class="cert-info">
                     <h4>Ethical Hacking</h4>
-                    <a href="https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL25CS142S95760009310548024" target="_blank">NPTEL Swayam (IIT Kharagpur)</a>
+                    <a href="https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL25CS142S95760009310548024" target="_blank">NPTEL Swayam (IIT Kharagpur) <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
 
             <div class="cert-card">
-                <div class="cert-icon"><i class="fas fa-brain"></i></div>
+                <img src="introduction_to_large_language_model.jpg" alt="Introduction to Large Language Model" class="cert-img">
                 <div class="cert-info">
                     <h4>Introduction to Large Language Model</h4>
-                    <a href="https://nptel.ac.in/noc/E_Certificate/NOC26CS88S25570050904568375" target="_blank">NPTEL Swayam (IIT Madras)</a>
+                    <a href="https://nptel.ac.in/noc/E_Certificate/NOC26CS88S25570050904568375" target="_blank">NPTEL Swayam (IIT Madras) <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
-
-
         </div>
     </section>
 
-    <div class="footer-separator-container">
-        <div class="footer-line">
-            <div class="footer-scanner"></div>
-        </div>
-        <div class="footer-center-node"></div>
-    </div>
-
-    <footer id="contact">
-        <canvas id="footer-rain"></canvas>
-        <div class="footer-grid">
-            <div class="footer-about">
-                <div class="nav-logo">JEET BHARDWAJ</div>
-                <p>Gwalior, Madhya Pradesh, India. +91 89621 52133.<br>Building AI solutions.</p>
-                <div class="footer-social">
-                    <a href="https://github.com/GitHub-JeetBhardwaj" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/thejeetbhardwaj" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="mailto:thejeetbhardwaj@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
-                </div>
+    <footer class="premium-footer">
+        <div class="footer-gradient-bar"></div>
+        <div class="footer-massive-text reveal">JEET BHARDWAJ</div>
+        <div class="footer-content reveal" style="transition-delay: 0.1s;">
+            <div class="footer-links">
+                <a href="https://github.com/GitHub-JeetBhardwaj" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/thejeetbhardwaj" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://huggingface.co/TheJeetBhardwaj" target="_blank" aria-label="HuggingFace"><i class="fas fa-cube"></i></a>
+                <a href="https://leetcode.com/u/Jeet_Bhardwaj_07/" target="_blank" aria-label="LeetCode"><i class="fas fa-code"></i></a>
+                <a href="mailto:thejeetbhardwaj@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
-            <div class="footer-links-container">
-                <div>
-                    <h4 class="footer-heading">Resources</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://github.com/GitHub-JeetBhardwaj" target="_blank">GitHub</a></li>
-                        <li><a href="https://huggingface.co/TheJeetBhardwaj" target="_blank">HuggingFace</a></li>
-                        <li><a href="https://leetcode.com/u/Jeet_Bhardwaj_07/" target="_blank">LeetCode</a></li>
-                        <li><a href="https://linkedin.com/in/thejeetbhardwaj" target="_blank">linkedin</a></li>
-                    </ul>
+            <div class="footer-bottom">
+                <div class="footer-status">
+                    <div class="status-dot"></div>
+                    SYSTEM ONLINE // GWALIOR, INDIA
                 </div>
-                <div>
-                    <h4 class="footer-heading">Connect</h4>
-                    <ul class="footer-links">
-                        <li><a href="mailto:thejeetbhardwaj@gmail.com">Email</a></li>
-                        <li><a href="mailto:thejeetbhardwaj@gmail.com">Consulting</a></li>
-                    </ul>
-                </div>
+                <div class="copyright">&copy; 2026 JEET BHARDWAJ. ALL RIGHTS RESERVED.</div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <div>System Status: <span style="color: #10b981;">Online</span></div>
-            <div>&copy; 2026 Jeet Bhardwaj. All rights reserved.</div>
         </div>
     </footer>
 
@@ -1279,54 +1324,6 @@
             canvas.height = img.height;
             ctx.drawImage(img, 0, 0);
         };
-
-        // Footer Matrix Rain
-        (function() {
-            const footerCanvas = document.getElementById('footer-rain');
-            const fCtx = footerCanvas.getContext('2d');
-            let fWidth, fHeight;
-
-            function resizeFooter() {
-                const footer = document.querySelector('footer');
-                fWidth = footer.offsetWidth;
-                fHeight = footer.offsetHeight;
-                footerCanvas.width = fWidth;
-                footerCanvas.height = fHeight;
-            }
-            resizeFooter();
-            window.addEventListener('resize', resizeFooter);
-
-            const fontSize = 14;
-            let columns = Math.floor(fWidth / fontSize);
-            const drops = [];
-            function initDrops() {
-                columns = Math.floor(fWidth / fontSize);
-                drops.length = 0;
-                for(let i = 0; i < columns; i++) drops[i] = Math.random() * -100;
-            }
-            initDrops();
-            window.addEventListener('resize', initDrops);
-            const chars = "010101010101XYZABC"; 
-
-            function drawFooterMatrix() {
-                fCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-                fCtx.fillRect(0, 0, fWidth, fHeight);
-                
-                const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-                fCtx.fillStyle = isLight ? '#000000' : '#888888'; 
-                
-                fCtx.font = fontSize + 'px monospace';
-
-                for(let i = 0; i < drops.length; i++) {
-                    const text = chars.charAt(Math.floor(Math.random() * chars.length));
-                    fCtx.fillText(text, i * fontSize, drops[i] * fontSize);
-                    if(drops[i] * fontSize > fHeight && Math.random() > 0.975) drops[i] = 0;
-                    drops[i]++;
-                }
-                requestAnimationFrame(drawFooterMatrix);
-            }
-            drawFooterMatrix();
-        })();
     </script>
 </body>
 </html>
