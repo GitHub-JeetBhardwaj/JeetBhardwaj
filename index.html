@@ -602,6 +602,30 @@
 
         .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /*hidden h1*/
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* We create a class that mimics your exact H1 styling */
+        .hero-quote {
+            font-family: 'Sora', sans-serif; 
+            font-weight: 700; 
+            letter-spacing: -0.02em;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1; 
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
     </style>
 </head>
 <body>
@@ -619,7 +643,7 @@
     </div>
 
     <nav>
-        <div class="nav-logo">JB<span></span></div>
+        <div class="nav-logo">Jeet Bhardwaj<span></span></div>
         <div class="nav-center">
             <a href="#education">Education</a>
             <a href="#experience">Experience</a>
@@ -645,8 +669,15 @@
         
         <div class="hero-content reveal">
             <div class="hero-badge">AI & Data Science Engineer</div>
-            <h1>Training machines to think, while learning how to rethink.<span class="typewriter-cursor"></span></h1>
+            
+            <!-- Google sees this as the main topic -->
+            <h1 class="sr-only">Jeet Bhardwaj</h1>
+            
+            <!-- Users see this exactly as it looked before -->
+            <h2 class="hero-quote">Training machines to think, while learning how to rethink.<span class="typewriter-cursor"></span></h2>
+            
             <p>Hi, I'm Jeet Bhardwaj, specializing in AI, Data Science, Computer Vision, and Deep Learning. Building intelligent systems and autonomous applications with precision.</p>
+            
             <div class="hero-stats">
                 <div class="stat-item">
                     <h3>3+</h3>
